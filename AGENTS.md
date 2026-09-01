@@ -13,12 +13,12 @@ Isaac 的个人 H5 纪念页。面向 D.R.E.A.M. Track 的同学，主题「Chag
 
 - 根路径必须保留 `index.html`。Vercel 静态部署访问 `/` 只认 index.html，改名会 404（2026-09-01 踩过）
 - README 顶部那段「HI THERE! …」问候语是 Isaac 在 GitHub 网页上自己写的，不要动
-- Isaac 会直接在 GitHub 网页上编辑仓库。本地改之前先 `git pull`，2026-09-01 因没 pull 被拒过一次
+- Isaac 会直接在 GitHub 网页上编辑仓库（index.html 已改过多轮）。本地版本随时过期，任何改动前先 `git pull`，2026-09-01 因没 pull 被拒过一次
 
 ## 改动时要知道
 
 - 文案、茶单、联系方式都在 index.html 里，搜文字定位；配色在 `:root` 的 CSS 变量，改一处全页生效
-- 首屏那句「奶香先到，茶底慢慢跟上来。」和三杯茶的品鉴记录是 agent 编的占位，等 Isaac 给真实内容替换
+- 首屏那句「茶需慢慢摇，心急则味散」、七杯茶的记录和评分词（人上人 / NPC+ 体系）是 Isaac 2026-09-01 自己在 GitHub 上改的，保持原样，别当占位改写；联系卡片的 @MDL 行和页脚被注释掉了，他有意的，别恢复
 - 交互点：茶杯点击冒小字、复制邮箱按钮、滚动入场 reveal；prefers-reduced-motion 已处理
 
 ## 验证流水线（已跑通）
