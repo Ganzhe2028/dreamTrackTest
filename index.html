@@ -428,86 +428,24 @@
   <section>
     <div class="sec-head reveal">
       <h2 class="sec-title">品鉴手记</h2>
-      <p class="sec-sub">最近喝过的n杯</p>
+      <p class="sec-sub" id="teaCount">最近喝过的n杯</p>
     </div>
 
     <div class="tea-card reveal">
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">伯牙绝弦</span>
-          <span class="tea-tag">茉莉雪芽底 · 少冰标准糖</span>
-        </div>
-        <p class="tea-note">绝对的招牌之一，人上人</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
-        </div>
-      </div>
+      <div id="teaList"></div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">万里木兰</span>
-          <span class="tea-tag">红茶底 · 标准冰</span>
-        </div>
-        <p class="tea-note">红茶，还可以，人上人-</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">桂馥兰香</span>
-          <span class="tea-tag">桂花乌龙 · 少冰标准糖</span>
-        </div>
-        <p class="tea-note">顶级，给到 人上人+</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
-        </div>
-      </div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">一骑红尘</span>
-          <span class="tea-tag">红茶 · 少冰少糖</span>
-        </div>
-        <p class="tea-note">给到 NPC+</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">清沫观音</span>
-          <span class="tea-tag">少冰标准糖</span>
-        </div>
-        <p class="tea-note">给到 人上人- 第一口感觉人上人但是可惜味道很快就散了（</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">万象春和</span>
-          <span class="tea-tag">少冰标准糖</span>
-        </div>
-        <p class="tea-note">给到 人上人- </p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span>
-        </div>
-      </div>
 
-      <div class="tea-item">
-        <div class="tea-head">
-          <span class="tea-name">山野栀子</span>
-          <span class="tea-tag">少冰标准糖</span>
-        </div>
-        <p class="tea-note">给到 人上人！完全有实力～=桂馥兰香</p>
-        <div class="tea-dots">
-          <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
-        </div>
-      </div>
+
+
+
+
+
+
+
 
       <p class="tea-foot">—— 以上口味纯属个人 ——</p>
     </div>
@@ -540,6 +478,55 @@
 <script>
 (function () {
   "use strict";
+
+  // ========== 茶单数据 ==========
+  // 以后改这里：评分填 rating 数字（0-5），圆点自动渲染
+  var TEAS = [
+    { name: "伯牙绝弦", tag: "茉莉雪芽底 · 少冰标准糖", note: "绝对的招牌之一，人上人", rating: 4 },
+    { name: "万里木兰", tag: "红茶底 · 标准冰", note: "红茶，还可以，人上人-", rating: 3 },
+    { name: "桂馥兰香", tag: "桂花乌龙 · 少冰标准糖", note: "顶级，给到 人上人+", rating: 5 },
+    { name: "一骑红尘", tag: "红茶 · 少冰少糖", note: "给到 NPC+", rating: 3 },
+    { name: "清沫观音", tag: "少冰标准糖", note: "给到 人上人- 第一口感觉人上人但是可惜味道很快就散了（", rating: 3 },
+    { name: "万象春和", tag: "少冰标准糖", note: "给到 人上人- ", rating: 3 },
+    { name: "山野栀子", tag: "少冰标准糖", note: "给到 人上人！完全有实力～=桂馥兰香", rating: 4 }
+  ];
+
+  var teaList = document.getElementById("teaList");
+  TEAS.forEach(function (t) {
+    var item = document.createElement("div");
+    item.className = "tea-item";
+
+    var head = document.createElement("div");
+    head.className = "tea-head";
+    var nm = document.createElement("span");
+    nm.className = "tea-name";
+    nm.textContent = t.name;
+    var tg = document.createElement("span");
+    tg.className = "tea-tag";
+    tg.textContent = t.tag;
+    head.appendChild(nm);
+    head.appendChild(tg);
+
+    var note = document.createElement("p");
+    note.className = "tea-note";
+    note.textContent = t.note;
+
+    var dots = document.createElement("div");
+    dots.className = "tea-dots";
+    for (var i = 0; i < 5; i += 1) {
+      var d = document.createElement("span");
+      d.className = i < t.rating ? "dot on" : "dot";
+      dots.appendChild(d);
+    }
+
+    item.appendChild(head);
+    item.appendChild(note);
+    item.appendChild(dots);
+    teaList.appendChild(item);
+  });
+
+  var tc = document.getElementById("teaCount");
+  if (tc) { tc.textContent = "最近喝过的" + TEAS.length + "杯"; }
 
   // ---------- 入场动画 ----------
   var reveals = document.querySelectorAll(".reveal");

@@ -17,7 +17,7 @@ Isaac 的个人 H5 纪念页。面向 D.R.E.A.M. Track 的同学，主题「Chag
 
 ## 改动时要知道
 
-- 文案、茶单、联系方式都在 index.html 里，搜文字定位；配色在 `:root` 的 CSS 变量，改一处全页生效
+- 茶单在 index.html 里 script 顶部的 TEAS 数组：name / tag / note 是文字，rating 填 0-5 数字，圆点自动渲染，副标题自动计数；其余文案搜文字定位；配色在 `:root` 的 CSS 变量，改一处全页生效
 - 首屏那句「茶需慢慢摇，心急则味散」、七杯茶的记录和评分词（人上人 / NPC+ 体系）是 Isaac 2026-09-01 自己在 GitHub 上改的，保持原样，别当占位改写；联系卡片的 @MDL 行和页脚被注释掉了，他有意的，别恢复
 - 交互点：茶杯点击冒小字、复制邮箱按钮、滚动入场 reveal；prefers-reduced-motion 已处理
 
@@ -30,3 +30,4 @@ Isaac 的个人 H5 纪念页。面向 D.R.E.A.M. Track 的同学，主题「Chag
 ## 时间线
 
 - 2026-09-01：建页面 → git init 推送 → 文件改名 index.html 修复 Vercel 404 → README 合并（保留用户问候语）→ 建本文件
+- 2026-09-01 晚：茶单重构为 TEAS 数据数组，评分改数字（响应 Isaac 在 commit 里提的「改评分好费劲」）
